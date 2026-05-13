@@ -1,83 +1,105 @@
 from django.db import models
 
-# Create your models here.
+
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=500, blank=True)
     logo = models.ImageField(upload_to='tecnologias/', blank=True, null=True)
     site = models.URLField(blank=True)
     interesse = models.IntegerField(default=1, help_text="Nível de interesse de 1 a 5")
- 
+
     class Meta:
         verbose_name_plural = "Tecnologias"
- 
+
     def __str__(self):
         return self.nome
-    
+
+
 class Competencia(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=500, blank=True)
+    tipo = models.CharField(max_length=50, blank=True, help_text="Hard Skill ou Soft Skill")  # NOVO
     nivel = models.IntegerField(default=1, help_text="Nível de proficiência")
- 
+
     class Meta:
         verbose_name_plural = "Competências"
- 
+
     def __str__(self):
         return self.nome
+
 
 class Formacao(models.Model):
     nome = models.CharField(max_length=200)
     instituicao = models.CharField(max_length=200)
+    descricao = models.TextField(blank=True)  # NOVO
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
- 
+    certificado_url = models.URLField(blank=True)  # NOVO
+
     class Meta:
         verbose_name = "Formação"
         verbose_name_plural = "Formações"
         ordering = ['-data_inicio']
- 
+
     def __str__(self):
         return f"{self.nome} — {self.instituicao}"
- 
+
+
 class Docente(models.Model):
     nome = models.CharField(max_length=200)
     email = models.EmailField(blank=True)
     pagina = models.URLField(blank=True)
- 
+    imagem = models.ImageField(upload_to='docentes/', blank=True, null=True)  # NOVO
+
     class Meta:
         verbose_name_plural = "Docentes"
- 
+
     def __str__(self):
         return self.nome
-    
+
+
 class Licenciatura(models.Model):
     nome = models.CharField(max_length=200)
+    sigla = models.CharField(max_length=10, blank=True)  # NOVO
+    descricao = models.TextField(blank=True)  # NOVO
     duracao = models.PositiveIntegerField(help_text="Duração em anos")
+    ects_total = models.PositiveIntegerField(default=0)  # NOVO
     instituicao = models.CharField(max_length=200)
     ano_inicio = models.DateField()
     ano_fim = models.DateField(blank=True, null=True)
- 
+
     class Meta:
         verbose_name_plural = "Licenciaturas"
- 
+
     def __str__(self):
         return f"{self.nome} — {self.instituicao}"
- 
+
+
 class UnidadeCurricular(models.Model):
     nome = models.CharField(max_length=200)
     codigo = models.CharField(max_length=20)
     descricao = models.CharField(max_length=500, blank=True)
+    ano_curricular = models.PositiveIntegerField(default=1)  # NOVO
+    semestre = models.PositiveIntegerField(default=1)  # NOVO
+    ects = models.PositiveIntegerField(default=0)  # NOVO
+    natureza = models.CharField(max_length=50, blank=True)  # NOVO
+    objetivos = models.TextField(blank=True)  # NOVO
+    metodologia = models.TextField(blank=True)  # NOVO
+    programa = models.TextField(blank=True)  # NOVO
+    bibliografia = models.TextField(blank=True)  # NOVO
+    avaliacao = models.TextField(blank=True)  # NOVO
     imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
     docente = models.ForeignKey(Docente, on_delete=models.SET_NULL, null=True, blank=True)
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE)
- 
+
     class Meta:
         verbose_name = "Unidade Curricular"
         verbose_name_plural = "Unidades Curriculares"
- 
+
     def __str__(self):
         return f"{self.codigo} — {self.nome}"
-  
+
+
 class TFC(models.Model):
     titulo = models.CharField(max_length=300)
     autores = models.CharField(max_length=500, blank=True)
@@ -90,37 +112,42 @@ class TFC(models.Model):
     areas = models.TextField(blank=True)
     tecnologias_usadas = models.TextField(blank=True)
     rating = models.PositiveIntegerField(default=0)
- 
+
     class Meta:
         verbose_name = "TFC"
         verbose_name_plural = "TFCs"
- 
+
     def __str__(self):
         return self.titulo
-    
+
+
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.CharField(max_length=1000, blank=True)
     tecnologias = models.ManyToManyField(Tecnologia, blank=True)
     competencias = models.ManyToManyField(Competencia, blank=True)
+    unidade_curricular = models.ForeignKey(UnidadeCurricular, on_delete=models.SET_NULL, null=True, blank=True)  # NOVO
     imagem = models.ImageField(upload_to='projetos/', blank=True, null=True)
     link_github = models.URLField(blank=True)
- 
+
     class Meta:
         verbose_name_plural = "Projetos"
- 
+
     def __str__(self):
         return self.nome
+
+
 class MakingOf(models.Model):
     entidade = models.CharField(max_length=200)
     descricao = models.CharField(max_length=1000, blank=True)
     documentacao = models.FileField(upload_to='makingof/', blank=True, null=True)
     decisoes_tomadas = models.TextField(blank=True)
     erros_correcoes = models.TextField(blank=True)
- 
+    uso_ia = models.TextField(blank=True)  # NOVO
+
     class Meta:
         verbose_name = "Making Of"
         verbose_name_plural = "Making Ofs"
- 
+
     def __str__(self):
         return self.entidade
