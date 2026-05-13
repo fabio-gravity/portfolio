@@ -40,9 +40,10 @@ class UnidadeCurricularAdmin(admin.ModelAdmin):
  
 @admin.register(TFC)
 class TFCAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'licenciatura', 'classificacao', 'data_inicio', 'data_fim')
-    search_fields = ('nome',)
-
+    list_display = ('titulo', 'autores', 'orientadores', 'rating')
+    search_fields = ('titulo', 'autores', 'palavras_chave')
+    list_filter = ('rating',)
+    
 @admin.register(Projeto)
 class ProjetoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'link_github')

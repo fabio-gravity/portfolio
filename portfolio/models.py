@@ -79,19 +79,24 @@ class UnidadeCurricular(models.Model):
         return f"{self.codigo} — {self.nome}"
   
 class TFC(models.Model):
-    nome = models.CharField(max_length=200)
-    descricao = models.CharField(max_length=1000, blank=True)
-    data_inicio = models.DateField(blank=True, null=True)
-    data_fim = models.DateField(blank=True, null=True)
-    classificacao = models.FloatField(blank=True, null=True)
-    licenciatura = models.OneToOneField(Licenciatura, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=300)
+    autores = models.CharField(max_length=500, blank=True)
+    orientadores = models.CharField(max_length=500, blank=True)
+    licenciaturas = models.CharField(max_length=300, blank=True)
+    sumario = models.TextField(blank=True)
+    link_pdf = models.URLField(blank=True)
+    imagem = models.URLField(blank=True)
+    palavras_chave = models.TextField(blank=True)
+    areas = models.TextField(blank=True)
+    tecnologias_usadas = models.TextField(blank=True)
+    rating = models.PositiveIntegerField(default=0)
  
     class Meta:
         verbose_name = "TFC"
         verbose_name_plural = "TFCs"
  
     def __str__(self):
-        return self.nome
+        return self.titulo
     
 class Projeto(models.Model):
     nome = models.CharField(max_length=200)
