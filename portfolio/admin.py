@@ -9,6 +9,7 @@ class TecnologiaAdmin(admin.ModelAdmin):
     search_fields = ('nome',)
     list_filter = ('interesse',)
 
+
 @admin.register(Competencia)
 class CompetenciaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'nivel')
