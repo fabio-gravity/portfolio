@@ -1,0 +1,39 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Making Of</h2>
+
+<section>
+    {% for entrada in entradas %}
+    <article>
+        <header>
+            <h3>{{ entrada.entidade }}</h3>
+            <p>{{ entrada.descricao }}</p>
+        </header>
+
+        {% if entrada.decisoes_tomadas %}
+        <section>
+            <h4>Decisões tomadas</h4>
+            <p>{{ entrada.decisoes_tomadas }}</p>
+        </section>
+        {% endif %}
+
+        {% if entrada.erros_correcoes %}
+        <section>
+            <h4>Erros e correções</h4>
+            <p>{{ entrada.erros_correcoes }}</p>
+        </section>
+        {% endif %}
+
+        {% if entrada.uso_ia %}
+        <section>
+            <h4>Uso de IA</h4>
+            <p>{{ entrada.uso_ia }}</p>
+        </section>
+        {% endif %}
+    </article>
+    {% empty %}
+        <p>Sem entradas de Making Of.</p>
+    {% endfor %}
+</section>
+{% endblock %}

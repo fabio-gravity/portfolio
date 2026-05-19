@@ -1,0 +1,30 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Unidades Curriculares</h2>
+
+<section>
+    {% for uc in ucs %}
+    <article>
+        <header>
+            <h3>{{ uc.codigo }} — {{ uc.nome }}</h3>
+            <p>{{ uc.licenciatura.nome }} | {{ uc.ano_curricular }}º ano | {{ uc.semestre }}º semestre | {{ uc.ects }} ECTS</p>
+        </header>
+
+        <section>
+            {% if uc.docente %}
+                <h4>Docente</h4>
+                <ul>
+                    <li>{{ uc.docente.nome }}</li>
+                </ul>
+            {% endif %}
+            {% if uc.descricao %}
+                <p>{{ uc.descricao }}</p>
+            {% endif %}
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem unidades curriculares registadas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

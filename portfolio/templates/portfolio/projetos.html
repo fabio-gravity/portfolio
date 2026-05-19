@@ -1,0 +1,47 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Projetos</h2>
+
+<section>
+    {% for projeto in projetos %}
+    <article>
+        <header>
+            {% if projeto.imagem %}
+                <img src="{{ projeto.imagem.url }}" alt="{{ projeto.nome }}">
+            {% endif %}
+            <h3>{{ projeto.nome }}</h3>
+            <p>{{ projeto.descricao }}</p>
+        </header>
+
+        <section>
+            <h4>Tecnologias</h4>
+            <ul>
+                {% for tec in projeto.tecnologias.all %}
+                    <li>{{ tec.nome }}</li>
+                {% empty %}
+                    <li>Sem tecnologias</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h4>Competências</h4>
+            <ul>
+                {% for comp in projeto.competencias.all %}
+                    <li>{{ comp.nome }}</li>
+                {% empty %}
+                    <li>Sem competências</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        {% if projeto.link_github %}
+            <p><a href="{{ projeto.link_github }}" target="_blank">Ver no GitHub</a></p>
+        {% endif %}
+    </article>
+    {% empty %}
+        <p>Sem projetos registados.</p>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,12 +1,17 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from . import views
+
+app_name = "portfolio"
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("escola/", include("escola.urls")),
+    path('', views.index_view, name="index"),
+    path('tecnologias/', views.tecnologias_view, name="tecnologias"),
+    path('competencias/', views.competencias_view, name="competencias"),
+    path('formacoes/', views.formacoes_view, name="formacoes"),
+    path('docentes/', views.docentes_view, name="docentes"),
+    path('licenciaturas/', views.licenciaturas_view, name="licenciaturas"),
+    path('ucs/', views.ucs_view, name="ucs"),
+    path('tfcs/', views.tfcs_view, name="tfcs"),
+    path('projetos/', views.projetos_view, name="projetos"),
+    path('makingof/', views.makingof_view, name="makingof"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

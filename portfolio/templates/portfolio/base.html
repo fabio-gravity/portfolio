@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Portfolio</h1>
+        <nav>
+            <a href="{% url 'portfolio:index' %}">Início</a>
+            <a href="{% url 'portfolio:tecnologias' %}">Tecnologias</a>
+            <a href="{% url 'portfolio:projetos' %}">Projetos</a>
+            <a href="{% url 'portfolio:competencias' %}">Competências</a>
+            <a href="{% url 'portfolio:formacoes' %}">Formações</a>
+            <a href="{% url 'portfolio:ucs' %}">UCs</a>
+            <a href="{% url 'portfolio:tfcs' %}">TFCs</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Fabio Farhat</p>
+    </footer>
+</body>
+</html>

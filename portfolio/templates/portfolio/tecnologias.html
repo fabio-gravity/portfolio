@@ -1,0 +1,28 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Tecnologias</h2>
+
+<section>
+    {% for tec in tecnologias %}
+    <article>
+        <header>
+            {% if tec.logo %}
+                <img src="{{ tec.logo.url }}" alt="{{ tec.nome }}">
+            {% endif %}
+            <h3>{{ tec.nome }}</h3>
+            <p>Interesse: {{ tec.interesse }}/5</p>
+        </header>
+
+        <section>
+            <p>{{ tec.descricao }}</p>
+            {% if tec.site %}
+                <p><a href="{{ tec.site }}" target="_blank">Site oficial</a></p>
+            {% endif %}
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem tecnologias registadas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

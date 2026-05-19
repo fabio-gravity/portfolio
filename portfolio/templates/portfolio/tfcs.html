@@ -1,0 +1,34 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>TFCs</h2>
+
+<section>
+    {% for tfc in tfcs %}
+    <article>
+        <header>
+            <h3>{{ tfc.titulo }}</h3>
+            <p>Autores: {{ tfc.autores }}</p>
+            <p>Orientadores: {{ tfc.orientadores }}</p>
+        </header>
+
+        <section>
+            {% if tfc.palavras_chave %}
+                <h4>Palavras-chave</h4>
+                <ul>
+                    <li>{{ tfc.palavras_chave }}</li>
+                </ul>
+            {% endif %}
+            {% if tfc.sumario %}
+                <p>{{ tfc.sumario|truncatewords:30 }}</p>
+            {% endif %}
+            {% if tfc.link_pdf %}
+                <p><a href="{{ tfc.link_pdf }}" target="_blank">Ver PDF</a></p>
+            {% endif %}
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem TFCs registados.</p>
+    {% endfor %}
+</section>
+{% endblock %}

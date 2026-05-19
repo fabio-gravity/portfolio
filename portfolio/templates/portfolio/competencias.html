@@ -1,0 +1,30 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Competências</h2>
+
+<section>
+    {% for comp in competencias %}
+    <article>
+        <header>
+            <h3>{{ comp.nome }}</h3>
+            {% if comp.tipo %}
+                <p>{{ comp.tipo }}</p>
+            {% endif %}
+        </header>
+
+        <section>
+            <h4>Nível</h4>
+            <ul>
+                <li>{{ comp.nivel }}/5</li>
+            </ul>
+            {% if comp.descricao %}
+                <p>{{ comp.descricao }}</p>
+            {% endif %}
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem competências registadas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

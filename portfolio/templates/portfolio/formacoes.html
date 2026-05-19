@@ -1,0 +1,31 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Formações</h2>
+
+<section>
+    {% for form in formacoes %}
+    <article>
+        <header>
+            <h3>{{ form.nome }}</h3>
+            <p>{{ form.instituicao }}</p>
+        </header>
+
+        <section>
+            <h4>Período</h4>
+            <ul>
+                <li>{{ form.data_inicio }} — {{ form.data_fim|default:"Presente" }}</li>
+            </ul>
+            {% if form.descricao %}
+                <p>{{ form.descricao }}</p>
+            {% endif %}
+            {% if form.certificado_url %}
+                <p><a href="{{ form.certificado_url }}" target="_blank">Ver certificado</a></p>
+            {% endif %}
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem formações registadas.</p>
+    {% endfor %}
+</section>
+{% endblock %}
