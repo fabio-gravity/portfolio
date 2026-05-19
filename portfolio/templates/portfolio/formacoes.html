@@ -2,6 +2,7 @@
 
 {% block content %}
 <h2>Formações</h2>
+<p><a href="{% url 'portfolio:formacao_criar' %}" class="btn">+ Nova Formação</a></p>
 
 <section>
     {% for form in formacoes %}
@@ -22,6 +23,11 @@
             {% if form.certificado_url %}
                 <p><a href="{{ form.certificado_url }}" target="_blank">Ver certificado</a></p>
             {% endif %}
+        </section>
+
+        <section class="acoes">
+            <a href="{% url 'portfolio:formacao_editar' form.id %}" class="btn">Editar</a>
+            <a href="{% url 'portfolio:formacao_apagar' form.id %}" class="btn btn-danger">Apagar</a>
         </section>
     </article>
     {% empty %}

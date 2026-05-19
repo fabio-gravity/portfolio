@@ -2,6 +2,7 @@
 
 {% block content %}
 <h2>Competências</h2>
+<p><a href="{% url 'portfolio:competencia_criar' %}" class="btn">+ Nova Competência</a></p>
 
 <section>
     {% for comp in competencias %}
@@ -21,6 +22,11 @@
             {% if comp.descricao %}
                 <p>{{ comp.descricao }}</p>
             {% endif %}
+        </section>
+
+        <section class="acoes">
+            <a href="{% url 'portfolio:competencia_editar' comp.id %}" class="btn">Editar</a>
+            <a href="{% url 'portfolio:competencia_apagar' comp.id %}" class="btn btn-danger">Apagar</a>
         </section>
     </article>
     {% empty %}

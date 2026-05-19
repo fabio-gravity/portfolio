@@ -129,6 +129,85 @@ article a:hover {
     text-decoration: underline;
 }
 
+/* BOTÕES */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #1e3a5f;
+    color: white !important;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 8px;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background: #2d5a8e;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background: #dc2626;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+/* AÇÕES DO CARD */
+.acoes {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* FORMULÁRIOS */
+form label {
+    font-size: 14px;
+    color: #374151;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+form textarea {
+    min-height: 100px;
+}
+
+form button[type="submit"] {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background 0.2s;
+}
+
+form button[type="submit"]:hover {
+    background: #2d5a8e;
+}
+
+form a {
+    color: #6b7280;
+    text-decoration: none;
+}
+
+/* FOOTER */
 footer {
     text-align: center;
     padding: 25px;

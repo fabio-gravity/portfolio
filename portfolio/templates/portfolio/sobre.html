@@ -1,0 +1,119 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Sobre esta Aplicação</h2>
+
+<section>
+    <!-- 1. Arquitetura MVT -->
+    <article>
+        <header>
+            <h3>1. Arquitetura MVT do Django</h3>
+        </header>
+        <section>
+            <p>O Django segue o padrão arquitetural MVT (Model-View-Template):</p>
+            <ul>
+                <li><strong>Model</strong> — define a estrutura dos dados e interage com a base de dados via ORM</li>
+                <li><strong>View</strong> — contém a lógica de negócio, recebe pedidos HTTP e retorna respostas</li>
+                <li><strong>Template</strong> — ficheiro HTML com linguagem template Django para renderizar dados dinâmicos</li>
+            </ul>
+            <p>Fluxo: Browser → URL → View → Model (BD) → Template → HTML → Browser</p>
+            <!-- Insira aqui a foto do desenho da arquitetura MVT -->
+            <!-- <img src="{% static 'portfolio/mvt.jpg' %}" alt="Arquitetura MVT"> -->
+        </section>
+    </article>
+
+    <!-- 2. Modelação -->
+    <article>
+        <header>
+            <h3>2. Modelação</h3>
+        </header>
+        <section>
+            <p>O diagrama entidade-relação foi desenhado à mão antes da implementação.
+               O projeto contém 9 entidades: Tecnologia, Competência, Formação, Docente,
+               Licenciatura, Unidade Curricular, TFC, Projeto e Making Of.</p>
+          <iframe width="560" height="315" 
+    src="https://www.youtube.com/watch?v=Hh9r0bInY_4" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
+        </section>
+    </article>
+
+    <!-- 3. Tecnologias usadas -->
+    <article>
+        <header>
+            <h3>3. Tecnologias Usadas</h3>
+        </header>
+        <section>
+            <h4>Backend</h4>
+            <ul>
+                <li>Python</li>
+                <li>Django</li>
+            </ul>
+        </section>
+        <section>
+            <h4>Frontend</h4>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+            </ul>
+        </section>
+        <section>
+            <h4>Base de Dados</h4>
+            <ul>
+                <li>SQLite</li>
+            </ul>
+        </section>
+        <section>
+            <h4>Ferramentas</h4>
+            <ul>
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>VS Code</li>
+            </ul>
+        </section>
+    </article>
+
+    <!-- 4. Estrutura das páginas -->
+    <article>
+        <header>
+            <h3>4. Estrutura de Navegação</h3>
+        </header>
+        <section>
+            <p>A aplicação está organizada em duas apps:</p>
+            <ul>
+                <li><strong>portfolio</strong> — páginas do portfólio pessoal (tecnologias, projetos, competências, formações, UCs, TFCs, making of)</li>
+                <li><strong>escola</strong> — exercício prático (cursos, professores, alunos)</li>
+            </ul>
+        </section>
+    </article>
+
+    <!-- 5. Repositório GitHub -->
+    <article>
+        <header>
+            <h3>5. Repositório GitHub</h3>
+        </header>
+        <section>
+            <!-- Substitua pelo seu link real -->
+            <p><a href="https://github.com/fabio-gravity" target="_blank">Ver repositório no GitHub</a></p>
+            <p>O GitHub permite controlo de versões, colaboração e histórico de
+               alterações. Cada funcionalidade é submetida com um commit descritivo,
+               facilitando o rastreio de erros e a documentação do progresso.</p>
+        </section>
+    </article>
+
+    <!-- 6. Making Of -->
+    <article>
+        <header>
+            <h3>6. Making Of</h3>
+        </header>
+        <section>
+            <p>O Making Of documenta todo o processo de desenvolvimento: decisões
+               de modelação, erros encontrados e corrigidos, uso de IA, e evolução
+               dos modelos.</p>
+            <p><a href="{% url 'portfolio:makingof' %}">Ver Making Of completo</a></p>
+        </section>
+    </article>
+</section>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 {% block content %}
 <h2>Projetos</h2>
+<p><a href="{% url 'portfolio:projeto_criar' %}" class="btn">+ Novo Projeto</a></p>
 
 <section>
     {% for projeto in projetos %}
@@ -39,6 +40,11 @@
         {% if projeto.link_github %}
             <p><a href="{{ projeto.link_github }}" target="_blank">Ver no GitHub</a></p>
         {% endif %}
+
+        <section class="acoes">
+            <a href="{% url 'portfolio:projeto_editar' projeto.id %}" class="btn">Editar</a>
+            <a href="{% url 'portfolio:projeto_apagar' projeto.id %}" class="btn btn-danger">Apagar</a>
+        </section>
     </article>
     {% empty %}
         <p>Sem projetos registados.</p>

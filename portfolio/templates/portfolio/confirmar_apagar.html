@@ -1,0 +1,22 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Apagar {{ tipo }}</h2>
+
+<section>
+    <article>
+        <header>
+            <h3>Tem a certeza que deseja apagar "{{ objeto }}"?</h3>
+            <p>Esta ação é irreversível.</p>
+        </header>
+
+        <section>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" style="background:#dc2626;">Sim, apagar</button>
+                <a href="{% url voltar_url %}">Cancelar</a>
+            </form>
+        </section>
+    </article>
+</section>
+{% endblock %}
