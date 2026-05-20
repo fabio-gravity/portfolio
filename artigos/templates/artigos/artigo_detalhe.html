@@ -1,0 +1,71 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>{{ artigo.titulo }}</h2>
+
+<section>
+    <article>
+        <header>
+            {% if artigo.fotografia %}
+                <img src="{{ artigo.fotografia.url }}" alt="{{ artigo.titulo }}">
+            {% endif %}
+            <p>Por {{ artigo.autor.username }} | {{ artigo.data_criacao|date:"d/m/Y H:i" }}</p>
+        </header>
+
+        <section>
+            <p>{{ artigo.texto|linebreaks }}</p>
+
+            {% if artigo.link_externo %}
+                <p><a href="{{ artigo.link_externo }}" target="_blank">Ver link externo</a></p>
+            {% endif %}
+        </section>
+
+        <section class="acoes">
+            <a href="{% url 'artigos:like' artigo.id %}" class="btn">❤ {{ artigo.total_likes }} likes</a>
+
+            {% if is_autor and artigo.autor == request.user %}
+                <a href="{% url 'artigos:editar' artigo.id %}" class="btn">Editar</a>
+            {% endif %}
+        </section>
+    </article>
+
+    <!-- COMENTÁRIOS -->
+    <h3 style="margin-top: 30px;">Comentários ({{ comentarios.count }})</h3>
+
+    {% for comentario in comentarios %}
+    <article>
+        <header>
+            <h4>{{ comentario.autor.username }}</h4>
+            <p>{{ comentario.data|date:"d/m/Y H:i" }}</p>
+        </header>
+        <section>
+            <p>{{ comentario.texto }}</p>
+        </section>
+    </article>
+    {% empty %}
+        <p>Sem comentários.</p>
+    {% endfor %}
+
+    <!-- FORMULÁRIO DE COMENTÁRIO -->
+    {% if user.is_authenticated %}
+    <article style="margin-top: 20px;">
+        <header>
+            <h4>Escrever comentário</h4>
+        </header>
+        <section>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div style="margin-bottom: 10px;">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit">Comentar</button>
+            </form>
+        </section>
+    </article>
+    {% else %}
+        <p><a href="{% url 'accounts:login' %}">Faça login para comentar</a></p>
+    {% endif %}
+</section>
+{% endblock %}

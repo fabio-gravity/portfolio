@@ -19,8 +19,19 @@
             <a href="{% url 'portfolio:formacoes' %}">Formações</a>
             <a href="{% url 'portfolio:ucs' %}">UCs</a>
             <a href="{% url 'portfolio:tfcs' %}">TFCs</a>
+            <a href="{% url 'artigos:artigos' %}">Artigos</a>
             <a href="{% url 'portfolio:makingof' %}">Making Of</a>
             <a href="{% url 'portfolio:sobre' %}">Sobre</a>
+
+            {% if user.is_authenticated %}
+                <span style="float:right;">
+                    {{ user.username }} | <a href="{% url 'accounts:logout' %}">Logout</a>
+                </span>
+            {% else %}
+                <span style="float:right;">
+                    <a href="{% url 'accounts:login' %}">Login</a>
+                </span>
+            {% endif %}
         </nav>
     </header>
 

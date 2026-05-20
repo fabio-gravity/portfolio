@@ -1,0 +1,26 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Login com link mágico</h2>
+
+<section>
+    <article>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: {% if message.tags == 'success' %}green{% else %}red{% endif %};">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div style="margin-bottom: 15px;">
+                <label><strong>Email</strong></label><br>
+                <input type="email" name="email" required>
+            </div>
+            <button type="submit">Enviar link</button>
+        </form>
+
+        <p style="margin-top: 15px;"><a href="{% url 'accounts:login' %}">Voltar ao login</a></p>
+    </article>
+</section>
+{% endblock %}

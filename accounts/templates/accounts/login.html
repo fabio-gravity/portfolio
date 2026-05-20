@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Login</h2>
+
+<section>
+    <article>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div style="margin-bottom: 15px;">
+                <label><strong>Username</strong></label><br>
+                <input type="text" name="username" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label><strong>Password</strong></label><br>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <section style="margin-top: 20px;">
+            <p><a href="{% url 'accounts:magic_link' %}">Entrar com link mágico</a></p>
+            <p>Não tem conta? <a href="{% url 'accounts:registo' %}">Registar</a></p>
+        </section>
+    </article>
+</section>
+{% endblock %}
